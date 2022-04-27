@@ -8,10 +8,12 @@ namespace AddressBook
 {
     internal class AddressBook
     {
+        //creating the object for the class address book 
         AddressBookMain addressMain = new AddressBookMain();
-        //created List of class Type.
+        
         public void ReadInput()
         {
+            
             bool CONTINUE = true;
 
             //the loop continues until the user exit from program.
@@ -22,6 +24,7 @@ namespace AddressBook
                 Console.WriteLine("2.Display");
                 Console.WriteLine("3.Edit Details");
                 Console.WriteLine("4.Delete Person");
+                Console.WriteLine("5.Add Multiple Person");
                 Console.WriteLine("0.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -41,6 +44,9 @@ namespace AddressBook
                         Console.WriteLine("Enter the first name of person");
                         string dName = Console.ReadLine();
                         addressMain.DeleteContact(dName);
+                        break;
+                    case 5:
+                        AddMultiplePerson();
                         break;
                     case 0:
                         CONTINUE = false;
@@ -72,8 +78,20 @@ namespace AddressBook
             long phoneNumber = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter Email");
             string email = Console.ReadLine();
+
             addressMain.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
+        }
+
+        //Method to Add Multiple Contact
+        public void AddMultiplePerson()
+        {
+            Console.WriteLine("How many contact,you want to Add");
+            int cNumber = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= cNumber; i++)
+            {
+                AddressBook.AddDetails(addressMain);
+            }
+            Console.WriteLine("All Contacts Added successfully! \n");
         }
     }
 }
-
